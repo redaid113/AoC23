@@ -1,4 +1,5 @@
 require_relative "./callable"
+require_relative "./read_lines"
 
 
 class Part

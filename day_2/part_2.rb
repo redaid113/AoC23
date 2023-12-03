@@ -1,5 +1,4 @@
 require_relative "../utils/part"
-require_relative "../utils/read_lines"
 
 
 module Day2
