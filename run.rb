@@ -27,6 +27,6 @@ class Run
     puts "========================"
 
     require_relative("#{@day}/part_#{part}.rb")
-    eval("#{@day.sub("_", "").capitalize}::Part#{part}.call(file_path: '#{@file_path}')")
+    Object.const_get(@day.sub("_", "").capitalize).const_get("Part#{part}").call(file_path: @file_path)
   end
 end
