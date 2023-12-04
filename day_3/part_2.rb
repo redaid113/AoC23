@@ -31,7 +31,7 @@ module Day3
         r += 1
       end
 
-      puts gears.values.filter! { |nums| nums.length == 2 }.map! { |nums| nums[0]*nums[1] }.sum
+      puts gears.values.filter! { |nums| nums.length == 2 }.sum{ |nums| nums.reduce(:*) }
     end
 
     def read_number(r, c)
