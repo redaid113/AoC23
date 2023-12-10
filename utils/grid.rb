@@ -28,10 +28,20 @@ class Grid
     @grid[row][column] = value
 
     @min_row = [row, @min_row].min
-    @max_row = [row, @min_row].max
+    @max_row = [row, @max_row].max
     @min_col = [column, @min_col].min
     @max_col = [column, @max_col].max
   end
 
+  def to_s
+    str = ""
+    for r in @min_row..@max_row do
+      for c in @min_col..@max_col do
+        str += get(r, c)
+      end
+      str += "\n"
+    end
+    str
+  end
 
 end

@@ -6,12 +6,10 @@ module Day9
       puts @inputs.map(&method(:lagrange)).sum
     end
 
-
     def lagrange(points)
       points.reverse!
       target_x = points.length
-      value = 0
-      points.each_with_index do |y, x|
+      points.each_with_index.sum do |y, x|
         numberator = 1
         denominator = 1
         for j in 0..target_x-1
@@ -20,9 +18,9 @@ module Day9
           numberator *= target_x - j
           denominator *= x - j
         end
-        value += y * numberator / denominator
+
+        y * numberator / denominator
       end
-      value
     end
 
     def parse_input
