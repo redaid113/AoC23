@@ -29,30 +29,39 @@ module Day17
 
       score = 0
       next_nodes([0, 0], 0, Direction::DOWN).each do |cord|
-        queue.push(cord, cord.score)
+        queue.push(cord, priority(cord))
       end
 
       next_nodes([0, 0], 0, Direction::RIGHT).each do |cord|
-        queue.push(cord, cord.score)
+        queue.push(cord, priority(cord))
       end
 
       while node = queue.pop do
-        key = [node.current, node.direction%2]
+        key = [node.current, node.direction % 2]
         next if seen.include?(key)
         seen << key
 
         break if node.current == [@grid.length - 1, @grid[0].length - 1]
 
         next_nodes(node.current, node.score, (node.direction + 1) % 4).each do |cord|
-          queue.push(cord, cord.score)
+          queue.push(cord, priority(cord))
         end
         next_nodes(node.current, node.score, (node.direction + 3) % 4).each do |cord|
-          queue.push(cord, cord.score)
+          queue.push(cord, priority(cord))
         end
 
       end
 
       puts node.score
+    end
+
+    def priority(node)
+      heuristic(node.current) + node.score
+    end
+
+    def heuristic(current)
+      r, c = current
+      (@grid.length - 1 - r) + (@grid[0].length - 1 - c)
     end
 
     def next_nodes(current, score, direction)
