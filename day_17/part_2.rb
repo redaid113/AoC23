@@ -37,7 +37,7 @@ module Day17
       end
 
       while node = queue.pop do
-        key = [node.current, node.direction]
+        key = [node.current, node.direction%2]
         next if seen.include?(key)
         seen << key
 
