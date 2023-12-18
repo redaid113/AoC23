@@ -1,3 +1,3 @@
 source "https://rubygems.org"
 
-gem 'kanwei-algorithms', '~> 0.2.0'
+gem "priority_queue_cxx", "~> 0.3.6"

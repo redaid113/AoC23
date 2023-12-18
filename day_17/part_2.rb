@@ -1,5 +1,5 @@
 require_relative "../utils/part"
-require 'algorithms'
+require 'fc'
 require 'set'
 
 
@@ -25,15 +25,15 @@ module Day17
     def call
       seen = Set[]
 
-      queue = Containers::PriorityQueue.new
+      queue = FastContainers::PriorityQueue.new(:min)
 
       score = 0
       next_nodes([0, 0], 0, Direction::DOWN).each do |cord|
-        queue.push(cord, 0 - cord.score)
+        queue.push(cord, cord.score)
       end
 
       next_nodes([0, 0], 0, Direction::RIGHT).each do |cord|
-        queue.push(cord, 0 - cord.score)
+        queue.push(cord, cord.score)
       end
 
       while node = queue.pop do
@@ -44,10 +44,10 @@ module Day17
         break if node.current == [@grid.length - 1, @grid[0].length - 1]
 
         next_nodes(node.current, node.score, (node.direction + 1) % 4).each do |cord|
-          queue.push(cord, 0 - cord.score)
+          queue.push(cord, cord.score)
         end
         next_nodes(node.current, node.score, (node.direction + 3) % 4).each do |cord|
-          queue.push(cord, 0 - cord.score)
+          queue.push(cord, cord.score)
         end
 
       end
